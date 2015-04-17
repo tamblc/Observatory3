@@ -33,7 +33,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'observatory3-secret'
+    session: process.env.SESSION_SECRET || 'observatory3-secret'
   },
 
   // List of user roles
