@@ -77,4 +77,23 @@ angular.module('observatory3App')
             alert("Error in setting");
         });
     };
+
+    var csvData = "data:text/csv;charset=utf-8,";
+
+    $scope.exportCSV = function(){
+      var processUser = function(user, callback){
+        var s = '","';
+        var text = '"' + user.name + s + 'http://github.com/' + user.github.login + s + user.email + s + user.rin +
+          s + user.attendance.length + '"';
+
+        callback(text);
+      };
+      $scope.users.forEach(function(user, index){
+        processUser(user,function(text){
+          csvData += text + '\n';
+        });
+      });
+      var encodedUri = encodeURI(csvData);
+      window.open(encodedUri);
+    }
   });
