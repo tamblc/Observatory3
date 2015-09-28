@@ -8,4 +8,5 @@ dist
 /server/config/local.env.js
 server/npm-debug.log
 server/static/uploads/
-/uploads
+/uploads/*
+!/uploads/default.jpg

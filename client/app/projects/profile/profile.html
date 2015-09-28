@@ -32,10 +32,15 @@
               No images uploaded yet.
             </p>
 
-            <carousel>
+            <carousel ng-show="slides.length > 0">
                 <slide ng-repeat="slide in slides" active="slide.active">
                     <div style="background:url({{imgPrefix+slide.src}}) center center;" class="slide" alt=""></div>
                 </slide>
+            </carousel>
+            <carousel ng-show="project && !slides.length">
+              <slide active="slide.active">
+                  <div style="background:url({{defaultImg}}) center center;" class="slide" alt=""></div>
+              </slide>
             </carousel>
         </div>
 

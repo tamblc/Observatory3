@@ -1,5 +1,5 @@
 /*jshint multistr: true */
-'use strict';  
+'use strict';
 
 angular.module('observatory3App')
 .controller('ProjectsProfileCtrl', function ($scope, $http, Auth, $stateParams, Upload, Project) {
@@ -18,7 +18,7 @@ angular.module('observatory3App')
             });
         });
     };
-    updateProject();   
+    updateProject();
 
     var getAuthors = function() {
         var project = $scope.project;
@@ -26,9 +26,9 @@ angular.module('observatory3App')
         .success(function(authors){
             $scope.authors = authors;
         });
-    }; 
+    };
 
-    $scope.getPic = function(user) {   
+    $scope.getPic = function(user) {
 
         if (! ('avatar' in user)){
             user.avatar = "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid";
@@ -37,7 +37,7 @@ angular.module('observatory3App')
             })
         }
         return user.avatar
-    }  
+    }
 
     var initializeSlides = function(photos) {
         var slides = [];
@@ -51,7 +51,7 @@ angular.module('observatory3App')
             }
         }
         $scope.slides = slides;
-    }  
+    }
 
     var setActiveSlide = function(photoName){
         for (var i = 0; i < $scope.slides.length; i++){
@@ -62,7 +62,7 @@ angular.module('observatory3App')
             }
         }
     };
-    updateProject();   
+    updateProject();
 
     var getAuthors = function() {
         var project = $scope.project;
@@ -70,7 +70,7 @@ angular.module('observatory3App')
         .success(function(authors){
             $scope.authors = authors;
         });
-    }; 
+    };
 
     var initializeSlides = function(photos) {
         var slides = [];
@@ -84,7 +84,7 @@ angular.module('observatory3App')
             }
         }
         $scope.slides = slides;
-    }; 
+    };
 
     var setActiveSlide = function(photoName){
         for (var i = 0; i < $scope.slides.length; i++){
@@ -94,7 +94,7 @@ angular.module('observatory3App')
                 $scope.slides[i].active = false;
             }
         }
-    }; 
+    };
 
     var addSlide = function(photoName){
         $scope.slides.push({
@@ -102,7 +102,7 @@ angular.module('observatory3App')
             src: photoName
         });
         setActiveSlide(photoName);
-    }; 
+    };
 
     var removeSlide = function(photoName){
         for (var i = 0; i < $scope.slides.length; i++){
@@ -110,18 +110,17 @@ angular.module('observatory3App')
                 $scope.slides.splice(i, 1);
             }
         }
-    }; 
-    
+    };
 
-    $scope.imgPrefix = '/uploads/' + $stateParams.username + '/' + $stateParams.project + '/'; 
-    
 
+    $scope.imgPrefix = '/uploads/' + $stateParams.username + '/' + $stateParams.project + '/';
+    $scope.defaultImg = '/uploads/default.jpg';     
     $scope.edittingDesc = false;
-    $scope.isLoggedIn = Auth.isLoggedIn;   
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.editDesc = function(){
         $scope.edittingDesc = !$scope.edittingDesc;
-    }; 
+    };
 
     // Function for saving the description
     $scope.saveDesc = function(){
@@ -133,7 +132,7 @@ angular.module('observatory3App')
         }).error(function(){
             window.alert('Could not update description!');
         });
-    }; 
+    };
 
     $scope.joinProject = function(){
         $http.put('/api/users/' + $scope.user._id + '/project',{
@@ -146,7 +145,7 @@ angular.module('observatory3App')
         }).error(function(){
             window.alert('Error adding user to project!');
         });
-    }; 
+    };
 
     $scope.leaveProject = function(){
         var loggedInUser = Auth.getCurrentUser();
@@ -161,12 +160,12 @@ angular.module('observatory3App')
         }).error(function(){
             window.alert('Error removing user from project!');
         });
-    }; 
-    
+    };
+
 
     $scope.checkUserProject = function() {
         $scope.userOnProject = $scope.user.projects.indexOf($scope.project._id) !== -1;
-    }; 
+    };
 
     $scope.upload = function($file) {
         Upload.upload({
@@ -177,7 +176,7 @@ angular.module('observatory3App')
         }).error(function (data, status) {
             console.log('error status: ' + status);
         });
-    }; 
+    };
 
     $scope.deletePhoto = function(){
         var username = $scope.project.githubUsername;
