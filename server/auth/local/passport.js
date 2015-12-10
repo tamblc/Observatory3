@@ -7,18 +7,35 @@ exports.setup = function (User, config) {
       passwordField: 'password' // this is the virtual field on the model
     },
     function(email, password, done) {
-      User.findOne({
-			email: email
-      }, function(err, user) {
-        if (err) return done(err);//null, false, {message: 'err'});
-        if (!user) {
-	   		return done(null, false, { message: 'This email is not registered.' });
-        }
-        if (!user.authenticate(password)) {
-				return done(null, false, { message: 'This password is not correct.' });
-        }
-        return done(null, user);
-      });
-    }
+		var str = email.toString();
+		if ( str.indexOf("@") > -1 )
+		{
+			User.findOne({
+				email: email
+			}, function(err, user) {
+				if (err) return done(err);
+				if (!user) {
+					return done(null, false, { message: 'This email is not registered.' });
+				}
+				if (!user.authenticate(password)) {
+					return done(null, false, { message: 'This password is not correct.' });
+				}
+				return done(null, user);
+			});
+		}else{	
+			User.findOne({
+				name: email
+			}, function(err, user) {
+				if (err) return done(err);
+				if (!user) {
+					return done(null, false, { message: 'This username is not registered.' });
+				}
+				if (!user.authenticate(password)) {
+					return done(null, false, { message: 'This password is not correct.' });
+				}
+				return done(null, user);
+			});
+		}
+   }  
   ));
 };

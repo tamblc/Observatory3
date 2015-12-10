@@ -10,7 +10,7 @@ angular.module('observatory3App')
 
       if(form.$valid) {
         Auth.login({
-          email: $scope.user.email,
+          email: $scope.user.id,
           password: $scope.user.password
         })
         .then( function() {
