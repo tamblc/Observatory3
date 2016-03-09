@@ -2,7 +2,7 @@
   remote_user: root
   gather_facts: false
   vars:
-    - log_file: "/opt/observatory.log"
+    - log_file: "/opt/observatory"
     - server_dir: "/opt/Observatory3/"
     - port: 8443
   tasks:
@@ -11,7 +11,7 @@
 
     - command: /usr/local/bin/forever stopall
 
-    - git: 
+    - git:
         repo='https://github.com/rcos/Observatory3.git'
         version="{{ release }}"
         dest="{{ server_dir }}"
@@ -24,4 +24,4 @@
       args:
         chdir: "{{ server_dir }}"
 
-    - shell: "NODE_ENV=production PORT={{ port }} forever -a -l {{ log_file }} start {{ server_dir }}dist/server/app.js"
+    - shell: "NODE_ENV=production PORT={{ port }} forever -a -l {{ log_file }}.log -o {{ log_file }}.log -e {{ log_file }}.error start {{ server_dir }}dist/server/app.js"
