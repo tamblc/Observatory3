@@ -22,7 +22,9 @@
     "password": "mentor",
     "github": {
         "login": "mentorguy"
-    }
+    },
+    "smallgroup":"5738d047ffd7ec3b75f334a1",
+    "_id": "000000000000000000000100"
 },{
     "provider": "local",
     "name": "Jane Eagle",
@@ -31,7 +33,8 @@
     "github": {
         "login": "jane"
     },
-    "_id": "5738ce217328682a75cc0a79"
+    "smallgroup":"5738d047ffd7ec3b75f334a1",
+    "_id": "000000000000000000000200"
 },{
     "provider": "local",
     "name": "Samuel Door",
@@ -39,7 +42,9 @@
     "password": "Samuel",
     "github": {
         "login": "doors"
-    }
+    },
+    "smallgroup":"5738d047ffd7ec3b75f334a1",
+    "_id":"000000000000000000000300"
 },{
     "provider": "local",
     "name": "Forest Meer",
@@ -47,7 +52,9 @@
     "password": "Forest",
     "github": {
         "login": "meerf"
-    }
+    },
+    "smallgroup":"5738d047ffd7ec3b75f334a1",
+    "_id":"000000000000000000000400"
 },{
     "provider": "local",
     "name": "Darwin Oswald",
@@ -55,5 +62,7 @@
     "password": "Darwin",
     "github": {
         "login": "darwin"
-    }
+    },
+    "smallgroup":"5738d047ffd7ec3b75f334a1",
+    "_id":"000000000000000000000500"
 }]
