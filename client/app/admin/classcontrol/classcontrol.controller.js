@@ -2,10 +2,10 @@
 
 angular.module('observatory3App')
 .controller('AdminClassControlCtrl', function ($scope, $http, Auth, User, $location, $window) {
-    
+
     if (Auth.isLoggedIn()){
         var loggedInUser = Auth.getCurrentUser();
-        
+
         if(loggedInUser.role!=='admin'){
             $location.path('/');
         }
@@ -18,11 +18,11 @@ angular.module('observatory3App')
     else{
         $location.path('/');
     }
-    
+
     var updateClassYear = function(){
         $http.get('/api/classyear')
         .success(function(currentClass){
-            
+
             // Check if there is already an attendance code
             var today = new Date();
             today.setHours(0,0,0,0);
@@ -34,12 +34,12 @@ angular.module('observatory3App')
             }
             $scope.currentClass = currentClass;
             $scope.displayURP = currentClass.displayURP;
-            
+
         }).error(function(err){
             console.error('Error getting class year', err);
         });
     };
-    
+
     $scope.generateAttendanceCode = function(bonusDay){
         $http.post('/api/classyear/daycode', {
             bonusDay: bonusDay ? true : false
@@ -47,7 +47,7 @@ angular.module('observatory3App')
             $scope.attendanceCode = dayCode;
         });
     };
-    
+
     // Toggles the display of URP form
     $scope.URPDisplay = function(){
         $scope.displayURP = !$scope.displayURP;
